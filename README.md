@@ -80,6 +80,7 @@ There are five `.java` files included in our final submission
 ### Results
 
 Results for simple pagerank:
+
 ```
 ====== After 1 iterations, the residual is 2.32679402 ======
 ====== After 2 iterations, the residual is 0.32678479 ======
@@ -89,34 +90,36 @@ Results for simple pagerank:
 ```
 
 Results for blocked pagerank (Gauss-Seidel):
+
 ```
 **********   Defaulted to Gauss-Seidel   **********
-====== The 1 pass takes average of 1008.0 iterations to complete ======
-====== After 1 pass, the residual is 7.208E-5 ======
+====== The 1 pass takes average of 1007.0 iterations to complete ======
+====== After 1 pass, the residual is 0.004377 ======
 ====== The 2 pass takes average of 599.0 iterations to complete ======
-====== After 2 pass, the residual is 4.207E-5 ======
-====== The 3 pass takes average of 550.0 iterations to complete ======
-====== After 3 pass, the residual is 2.0866E-4 ======
-====== The 4 pass takes average of 443.0 iterations to complete ======
-====== After 4 pass, the residual is 2.5986E-4 ======
+====== After 2 pass, the residual is 0.02737 ======
+====== The 3 pass takes average of 548.0 iterations to complete ======
+====== After 3 pass, the residual is 0.023273 ======
+====== The 4 pass takes average of 442.0 iterations to complete ======
+====== After 4 pass, the residual is 0.010286 ======
 ====== The 5 pass takes average of 336.0 iterations to complete ======
-====== After 5 pass, the residual is 2.6028E-4 ======
-====== The 6 pass takes average of 246.0 iterations to complete ======
-====== After 6 pass, the residual is 3.3875E-4 ======
-====== The 7 pass takes average of 190.0 iterations to complete ======
-====== After 7 pass, the residual is 5.784E-5 ======
+====== After 5 pass, the residual is 0.004835 ======
+====== The 6 pass takes average of 245.0 iterations to complete ======
+====== After 6 pass, the residual is 0.001905 ======
+====== The 7 pass takes average of 189.0 iterations to complete ======
+====== After 7 pass, the residual is 9.34E-4 ======
 ====== The 8 pass takes average of 141.0 iterations to complete ======
-====== After 8 pass, the residual is 2.3623E-4 ======
+====== After 8 pass, the residual is 4.24E-4 ======
 ====== The 9 pass takes average of 112.0 iterations to complete ======
-====== After 9 pass, the residual is 1.6646E-4 ======
+====== After 9 pass, the residual is 2.29E-4 ======
 ====== The 10 pass takes average of 86.0 iterations to complete ======
-====== After 10 pass, the residual is 1.1303E-4 ======
+====== After 10 pass, the residual is 1.13E-4 ======
 ====== The 11 pass takes average of 79.0 iterations to complete ======
-====== After 11 pass, the residual is 5.319E-5 ======
-====== The 12 pass takes average of 71.0 iterations to complete ======
-====== After 12 pass, the residual is 3.238E-5 ======
+====== After 11 pass, the residual is 5.3E-5 ======
+!! MAPREDUCE ITERATION CONVERGES AFTER 11 PASS
 ```
+
 Results for blocked pagerank (Jacobi):
+
 ```
 ******************   Jacobi   ******************
 ====== The 1 pass takes average of 1858.0 iterations to complete ======
@@ -141,7 +144,9 @@ Results for blocked pagerank (Jacobi):
 ====== After 10 pass, the residual is 8.4E-5 ======
 !! MAPREDUCE ITERATION CONVERGES AFTER 10 PASS
 ```
+
 Results for randomized pagerank:
+
 ```
 **********   Defaulted to Gauss-Seidel   **********
 ====== The 1 pass takes average of 440.0 iterations to complete ======
