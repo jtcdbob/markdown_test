@@ -117,6 +117,8 @@ Results for blocked pagerank (Gauss-Seidel):
 ====== After 11 pass, the residual is 5.3E-5 ======
 !! MAPREDUCE ITERATION CONVERGES AFTER 11 PASS
 ```
+The total time for Gauss-Seidel to converge is 28 minutes.
+
 
 Results for blocked pagerank (Jacobi):
 
@@ -144,6 +146,8 @@ Results for blocked pagerank (Jacobi):
 ====== After 10 pass, the residual is 8.4E-5 ======
 !! MAPREDUCE ITERATION CONVERGES AFTER 10 PASS
 ```
+The total time for Jacobi to converge is 34 minutes.
+
 
 Results for randomized pagerank:
 
