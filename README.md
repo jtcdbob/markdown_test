@@ -21,15 +21,15 @@ There are five `.java` files included in our final submission
     ```
     rejectMin < rd < rejectLimit
     ```
-    
+
     * The program reads from `edges.txt` file and output to `filtered_edges.txt` file, which we will use for our project. The output format is
     ```
     u    v   deg(u)  pr(u)
     ```
     where `deg(u)` counts the number of outlinks from node `u` and `pr(u)` is defaulted to `1/N = 1/685229`
-    
+
     * This file is not needed for running because it has been done locally and `filtered_edges.txt` is available on S3. See later sections for more details.
-    
+
 2. `PageRank.java`: compute the simple node-to-node pagerank update using the hadoop MapReduce. The program consists of three classes - a mapper class, a reducer class and a driver(main) class.
 
     * The mapper class reads a line from our `filtered_edges.txt` file, parse the line and uses nodeID as keys to map the values to reducers. For each value(line) the mapper reads, it sends two sets of lists to reducers
@@ -38,7 +38,7 @@ There are five `.java` files included in our final submission
     <u, List<u, v, deg(u), pr(u)>>
     ```
     The first list is used to update pagerank values for each node `v`. The second list is used after the pagerank update and each node `u(w)` will be able to emit its results (see reducer class description).
-    
+
     * The reducer class reads a key and a list of values associated with the key, namely
     ```
     <key, List<key, v, deg(u), pr(u)>>
@@ -48,13 +48,13 @@ There are five `.java` files included in our final submission
     v    w   deg(v)  pr_new(v)
     ```
     The reducer also increment the counter according to the node residual it computed from earlier.
-    
+
     * The driver class (main function) deals with job configuration and system output (for residual after each iteration/pass). The program terminates after iterating `MAXIT (= 5)` times or when the residual is smaller than `TOLERANCE = 0.0001`.
-    
+
 2. `blockedPageRank.java`: computes the pagerank by blocks. The program is similar to `PageRank.java` in structure with changes in mapper and reducer classes.
-3. 
+3.
     * The mapper class uses blockIDs as keys instead of nodeIDs. The blockIDs are computed from nodeIDs using `getBlockID(nodeID)` and a list of boundary values from blocking (obtained from file `block.txt`). Besides that, it is similar to the mapper class in node-to-node pagerank update.
-    
+
     * The reducer class organizes the input values with three sets - a set of all nodes in the block (`nodes`), a set of edges coming into the block (`influx`) and a set of edges leaving the block (`efflux`). Then the reducer does the following (Gauss-Seidel) update:
     ```
     for each v in nodes:
@@ -64,17 +64,17 @@ There are five `.java` files included in our final submission
         add to block residual;
     ```
     The reducer will go through this process until the average residual converges, and it will computes the block residual. Then the reducer emits the results according to the `efflux` set, as well as block residual value and total iteration number.
-    
+
     * The driver class is similar to the one in `PageRank.java`. It terminates when the average residual block is small enough.
-    
+
 2. `blockedJacobiPageRank.java`: does the same job as `blcokedPageRank.java` with a Jacobi method.
 
     * The reducer does not update the `pr(v)` in the `influx` set until the pagerank update for each node `v` in `nodes` is complete.
-    
+
 3. `randomPageRank.java`: does a similar job as `blockedPageRank.java` but using a hash function to generate key instead of using the given block partition.
 
     * The map computes the key by calling `hash32shiftmult(nodeID)` and distributes the information to reducers.
-    
+
     * The reducer examines each edge in the input list and see if the edge belongs to the `influx` or(and) the `efflux` set, as well as compiling a `nodes` set from the list.
 
 ### Results
@@ -117,5 +117,43 @@ Results for blocked pagerank (Gauss-Seidel):
 ====== After 12 pass, the residual is 3.238E-5 ======
 ```
 Results for blocked pagerank (Jacobi):
-
+```
+******************   Jacobi   ******************
+====== The 1 pass takes average of 1858.0 iterations to complete ======
+====== After 1 pass, the residual is 0.004319 ======
+====== The 2 pass takes average of 908.0 iterations to complete ======
+====== After 2 pass, the residual is 0.033498 ======
+====== The 3 pass takes average of 822.0 iterations to complete ======
+====== After 3 pass, the residual is 0.023108 ======
+====== The 4 pass takes average of 610.0 iterations to complete ======
+====== After 4 pass, the residual is 0.010044 ======
+====== The 5 pass takes average of 448.0 iterations to complete ======
+====== After 5 pass, the residual is 0.004621 ======
+====== The 6 pass takes average of 303.0 iterations to complete ======
+====== After 6 pass, the residual is 0.001752 ======
+====== The 7 pass takes average of 223.0 iterations to complete ======
+====== After 7 pass, the residual is 7.98E-4 ======
+====== The 8 pass takes average of 135.0 iterations to complete ======
+====== After 8 pass, the residual is 3.05E-4 ======
+====== The 9 pass takes average of 112.0 iterations to complete ======
+====== After 9 pass, the residual is 1.38E-4 ======
+====== The 10 pass takes average of 88.0 iterations to complete ======
+====== After 10 pass, the residual is 8.4E-5 ======
+!! MAPREDUCE ITERATION CONVERGES AFTER 10 PASS
+```
 Results for randomized pagerank:
+```
+**********   Defaulted to Gauss-Seidel   **********
+====== The 1 pass takes average of 440.0 iterations to complete ======
+====== After 1 pass, the residual is 0.039973 ======
+====== The 2 pass takes average of 411.0 iterations to complete ======
+====== After 2 pass, the residual is 0.143448 ======
+====== The 3 pass takes average of 361.0 iterations to complete ======
+====== After 3 pass, the residual is 0.175524 ======
+====== The 4 pass takes average of 346.0 iterations to complete ======
+====== After 4 pass, the residual is 0.086786 ======
+====== The 5 pass takes average of 327.0 iterations to complete ======
+====== After 5 pass, the residual is 0.058112 ======
+====== The 6 pass takes average of 315.0 iterations to complete ======
+====== After 6 pass, the residual is 0.032708 ======
+```
