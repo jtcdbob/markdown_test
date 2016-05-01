@@ -77,6 +77,12 @@ There are five `.java` files included in our final submission
 
     * The reducer examines each edge in the input list and see if the edge belongs to the `influx` or(and) the `efflux` set, as well as compiling a `nodes` set from the list.
 
+4. Notes on running the files
+
+    * Make sure the file path is correctly configured to the S3 file before compiling.
+
+    * Make sure to use the java with matching version to the one hadoop accepts.
+
 ### Results
 
 Results for simple pagerank:
@@ -185,4 +191,10 @@ Gauss-Seidel:
 |   90497   |   90498   |   100501  |   100502  |   110567  |   110568  |
 | 9.3633E-7 | 1.1325E-5 | 1.0181E-6 | 9.4769E-7 | 3.3816E-4 | 8.0271E-5 |
 
-Complete file can be found online in
+Complete file can be found online in:
+
+[s3://edu-cornell-cs5300-project2-kc853/gs_data.zip](https://s3-us-west-2.amazonaws.com/edu-cornell-cs5300-project2-kc853/gs_data.zip) (Gauss-Seidel after 11 iterations)
+
+and
+
+[s3://edu-cornell-cs5300-project2-kc853/gs_data.zip](https://s3-us-west-2.amazonaws.com/edu-cornell-cs5300-project2-kc853/jacobi_data.zip) (Jacobi after 10 iterations)
