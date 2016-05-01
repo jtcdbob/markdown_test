@@ -88,6 +88,7 @@ Results for simple pagerank:
 ====== After 4 iterations, the residual is 0.10093302 ======
 ====== After 5 iterations, the residual is 0.07000755 ======
 ```
+The total time for node-to-node PageRank update to get residual of 0.07 is 4 minutes.
 
 Results for blocked pagerank (Gauss-Seidel):
 
@@ -146,23 +147,36 @@ Results for blocked pagerank (Jacobi):
 ====== After 10 pass, the residual is 8.4E-5 ======
 !! MAPREDUCE ITERATION CONVERGES AFTER 10 PASS
 ```
-The total time for Jacobi to converge is 34 minutes.
+
+The total time for Jacobi to converge is 34 minutes. Jacobi takes fewer passes to converge to smaller residual, however the (real-life) time for it to converge is longer than Gauss-Seidel with the same cluster specification. Both (Jacobi and GS) are faster than the simple one, in the sense that 1 iteration (average time 3.4 minutes for Jacobi and 2.5 minutes for GS) is sufficient to bring the residual to ~0.004 < 0.07 from simple version (around 4 minutes).
 
 
 Results for randomized pagerank:
 
 ```
 **********   Defaulted to Gauss-Seidel   **********
-====== The 1 pass takes average of 440.0 iterations to complete ======
-====== After 1 pass, the residual is 0.039973 ======
-====== The 2 pass takes average of 411.0 iterations to complete ======
-====== After 2 pass, the residual is 0.143448 ======
-====== The 3 pass takes average of 361.0 iterations to complete ======
-====== After 3 pass, the residual is 0.175524 ======
-====== The 4 pass takes average of 346.0 iterations to complete ======
-====== After 4 pass, the residual is 0.086786 ======
-====== The 5 pass takes average of 327.0 iterations to complete ======
-====== After 5 pass, the residual is 0.058112 ======
-====== The 6 pass takes average of 315.0 iterations to complete ======
-====== After 6 pass, the residual is 0.032708 ======
+====== The 1 pass takes average of 236.0 iterations to complete ======
+====== After 1 pass, the residual is 0.039965 ======
+====== The 2 pass takes average of 210.0 iterations to complete ======
+====== After 2 pass, the residual is 0.14347 ======
+====== The 3 pass takes average of 204.0 iterations to complete ======
+====== After 3 pass, the residual is 0.175513 ======
+====== The 4 pass takes average of 204.0 iterations to complete ======
+====== After 4 pass, the residual is 0.086775 ======
+====== The 5 pass takes average of 204.0 iterations to complete ======
+====== After 5 pass, the residual is 0.058101 ======
+====== The 6 pass takes average of 204.0 iterations to complete ======
+====== After 6 pass, the residual is 0.032699 ======
 ```
+
+The randomized pagerank update is to show that it has much slower convergence rate than one with a "good" blocking.
+
+### Sample Result for blocked PageRank update
+
+Gauss-Seidel:
+
+| 0         | 1         | 10328     | 10329     | 20373     | 20374     | 30629     |
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+| 1.5038E-5 | 5.1898E-5 | 4.3738E-7 | 2.4369E-7 | 2.1890E-7 | 2.1890E-7 | 2.1890E-7 |
+| 2         | x46       | x47       | x56       | x57       | x67       | x68       |
+|           | 3         | 3         | 2         | 4         | 1         | 7         |
