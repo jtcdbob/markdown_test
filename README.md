@@ -198,5 +198,7 @@ and
 
 [s3://edu-cornell-cs5300-project2-kc853/gs_data.zip](https://s3-us-west-2.amazonaws.com/edu-cornell-cs5300-project2-kc853/jacobi_data.zip) (Jacobi after 10 iterations)
 
-[url=https://flic.kr/p/GpLVby][img]https://farm8.staticflickr.com/7370/26523313960_79aa29bc31_z.jpg[/img]
+![url=https://flic.kr/p/GpLVby][img]https://farm8.staticflickr.com/7370/26523313960_79aa29bc31_z.jpg[/img]
+
+![alt text](https://farm8.staticflickr.com/7370/26523313960_79aa29bc31_z_d.jpg "Please work")
 
