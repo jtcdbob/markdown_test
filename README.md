@@ -198,4 +198,5 @@ and
 
 [s3://edu-cornell-cs5300-project2-kc853/gs_data.zip](https://s3-us-west-2.amazonaws.com/edu-cornell-cs5300-project2-kc853/jacobi_data.zip) (Jacobi after 10 iterations)
 
-[url=https://flic.kr/p/GpLVby][img]https://farm8.staticflickr.com/7370/26523313960_79aa29bc31_z.jpg[/img][/url][url=https://flic.kr/p/GpLVby]Flickr Upload (1 of 1).jpg[/url] by [url=https://www.flickr.com/photos/105714259@N08/]Bob Chen[/url], on Flickr
+[url=https://flic.kr/p/GpLVby][img]https://farm8.staticflickr.com/7370/26523313960_79aa29bc31_z.jpg[/img]
+
