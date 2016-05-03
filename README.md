@@ -194,7 +194,7 @@ Gauss-Seidel:
 Complete file can be found online in:
 
 [s3://edu-cornell-cs5300-project2-kc853/gs_data.zip](https://s3-us-west-2.amazonaws.com/edu-cornell-cs5300-project2-kc853/gs_data.zip) (Gauss-Seidel after 11 iterations)
-
+![alt text](https://flic.kr/p/GpLVby "test")
 and
 
 [s3://edu-cornell-cs5300-project2-kc853/gs_data.zip](https://s3-us-west-2.amazonaws.com/edu-cornell-cs5300-project2-kc853/jacobi_data.zip) (Jacobi after 10 iterations)
